@@ -1,3 +1,4 @@
+import { TopMenu } from "@/components";
 
 // lrc => Create a layout root component
 export default function ShopLayout({
@@ -6,7 +7,8 @@ export default function ShopLayout({
  children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-screen bg-red-500">
+    <main className="min-h-screen">
+      <TopMenu />
       {children}
     </main>
   );
