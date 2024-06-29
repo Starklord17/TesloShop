@@ -44,3 +44,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Resources
 
 - [React Icons](https://react-icons.github.io/react-icons/)
+- [Zustand - Gestor de estado](https://zustand-demo.pmnd.rs/)
