@@ -40,6 +40,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Docs
 
 - [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups)
+- [clsx](https://www.npmjs.com/package/clsx)
 
 ## Resources
 
