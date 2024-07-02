@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
+
 import { initialData } from "@/seed/seed";
 import { titleFont } from "@/config/fonts";
-import { SizeSelector } from '../../../../components/product/size-selector/SizeSelector';
+import { SizeSelector } from '@/components/product/size-selector/SizeSelector';
+import { QuantitySelector } from "@/components/product/quantity-selector/QuantitySelector";
 
 
 interface Props {
@@ -40,6 +42,9 @@ export default function ProductPage({ params }: Props) {
         />
 
         {/* Selector de cantidad */}
+        <QuantitySelector 
+          quantity={2}
+        />
 
         {/* Button */}
         <button className="btn-primary my-5">Add to Cart</button>
