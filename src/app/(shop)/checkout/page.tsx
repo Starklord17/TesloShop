@@ -57,7 +57,7 @@ export default function CheckoutPage() {
               <p>Av. Siempre viva 123</p>
               <p>Springfield, 12345</p>
               <p>Estados Unidos</p>
-              <p>Código Postal: 7600</p>
+              <p>Código Postal: 90001</p>
               <p>Tel: 333444555</p>
             </div>
 
