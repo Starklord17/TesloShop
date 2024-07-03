@@ -4,7 +4,7 @@ import { initialData } from "@/seed/seed";
 import { titleFont } from "@/config/fonts";
 import { SizeSelector } from '@/components/product/size-selector/SizeSelector';
 import { QuantitySelector } from "@/components/product/quantity-selector/QuantitySelector";
-import { ProductSlideShow } from "@/components";
+import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
 
 
 interface Props {
@@ -24,11 +24,21 @@ export default function ProductPage({ params }: Props) {
   return (
     <main className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
 
-      {/* SlideShow */}
+      {/* Mobile SlideShow */}
+      <section className="col-span-1 md:hidden">
+        <ProductMobileSlideShow 
+          title={product.title}
+          images={product.images}
+          className="block md:hidden"
+        />
+      </section>
+
+      {/* Desktop SlideShow */}
       <section className="col-span-1 md:col-span-2">
         <ProductSlideShow 
           title={product.title}
           images={product.images}
+          className="hidden md:block"
         />
       </section>
 
