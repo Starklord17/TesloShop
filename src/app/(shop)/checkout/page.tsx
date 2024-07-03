@@ -41,13 +41,7 @@ export default function CheckoutPage() {
                 <div>
                   <p>{product.title}</p>
                   <p>${product.price}</p>
-                  <p className="font-semibold">Subtotal: ${product.price * 3}</p>
-
-                  <div className="mt-2">
-                    <QuantitySelector quantity={1} />
-                  </div>
-
-                  <p className="mt-2">Talla: M</p>
+                  <p className="font-semibold mt-2">Subtotal: ${product.price * 3}</p>
 
                 </div>
               </div>

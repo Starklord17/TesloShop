@@ -75,7 +75,6 @@ export default function CartPage() {
               </Link>
             </button>
           </aside>
-
         </div>
       </section>
     </main>

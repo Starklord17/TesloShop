@@ -62,7 +62,7 @@ export default function OrderIDpage({ params }: Props) {
                 <div>
                   <p>{product.title}</p>
                   <p>${product.price}</p>
-                  <p className="font-semibold">
+                  <p className="font-semibold mt-2">
                     Subtotal: ${product.price * 3}
                   </p>
 
