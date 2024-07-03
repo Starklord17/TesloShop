@@ -49,7 +49,7 @@ export default function CartPage() {
           </article>
 
           {/* Checkout - Resumen de orden*/}
-          <aside className="bg-white rounded-xl shadow-xl p-7">
+          <aside className="bg-white rounded-xl shadow-xl p-7 flex flex-col justify-between h-72">
             <h2 className="text-xl mb-2">Resumen de orden</h2>
 
             <div className="grid grid-cols-2 gap-2">
@@ -66,15 +66,16 @@ export default function CartPage() {
               <span className="mt-5 text-2xl text-right">$ 115</span>
             </div>
 
-            <div className="mt-5 mb-2 w-full">
+            <button className="mt-5 mb-2 w-full">
               <Link
                 className="flex btn-primary justify-center"
                 href="/checkout/address"
               >
                 Checkout
               </Link>
-            </div>
+            </button>
           </aside>
+
         </div>
       </section>
     </main>
