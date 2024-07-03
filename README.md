@@ -41,8 +41,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 - [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups)
 - [clsx](https://www.npmjs.com/package/clsx)
+- [Swiper React](https://swiperjs.com/react)
 
 ## Resources
 
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [Zustand - Gestor de estado](https://zustand-demo.pmnd.rs/)
+- [Swiper](https://swiperjs.com/)
