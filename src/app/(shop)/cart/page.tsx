@@ -12,7 +12,7 @@ const productsInCart = [
 
 export default function CartPage() {
 
-  redirect("/empty");
+  // redirect("/empty");
 
   return (
     <main className="flex justify-center items-center mb-72 px-10 sm:px-0">
@@ -53,7 +53,8 @@ export default function CartPage() {
           </article>
 
           {/* Checkout - Resumen de orden*/}
-          <aside className="bg-white rounded-xl shadow-xl p-7 flex flex-col justify-between h-72">
+          {/* <aside className="bg-white rounded-xl shadow-xl p-7 flex flex-col justify-between h-72"> */}
+          <aside className="bg-white rounded-xl shadow-xl p-7 h-fit">
             <h2 className="text-xl mb-2">Resumen de orden</h2>
 
             <div className="grid grid-cols-2 gap-2">
