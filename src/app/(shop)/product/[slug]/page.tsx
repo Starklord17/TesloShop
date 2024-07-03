@@ -27,9 +27,8 @@ export default function ProductPage({ params }: Props) {
       {/* SlideShow */}
       <section className="col-span-1 md:col-span-2">
         <ProductSlideShow 
-          images={product.images}
           title={product.title}
-          className="h-96"
+          images={product.images}
         />
       </section>
 
