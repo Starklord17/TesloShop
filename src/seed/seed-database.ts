@@ -12,7 +12,28 @@ async function main() {
     prisma.category.deleteMany(),
   ]);
 
-  console.log("Datos eliminados");
+  // console.log("Datos eliminados");
+
+  // Categorias
+  // await prisma.category.create({
+  //   data: {
+  //     name: "Shirts",
+  //   },
+  // });
+
+  // {
+  //   name: "Shirts",
+  // }
+
+  const { categories, products } = initialData;
+  
+  const categoriesData = categories.map((category) => ({
+    name: category
+  }));
+  // console.log(categoriesData);
+  await prisma.category.createMany({
+    data: categoriesData,
+  });
   
 }
 
