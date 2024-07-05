@@ -17,7 +17,8 @@
 - [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups)
 - [clsx](https://www.npmjs.com/package/clsx)
 - [Swiper React](https://swiperjs.com/react)
-- [Prisma](https://www.prisma.io/docs/getting-started/quickstart)j
+- [Prisma](https://www.prisma.io/docs/getting-started/quickstart)
+- [Best practice for instantiating Prisma Client with Next.js](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution)
 
 ## Resources
 
