@@ -7,7 +7,8 @@
 3. Instalar dependencias ```pnpm install```
 4. Levantar la base de datos ```docker compose up -d```
 5. Correr las migraciones de Prisma ```npx prisma migrate dev```
-6. Correr el proyecto ```pnpm run dev```
+6. Ejecutar seed ```pnpm run seed```
+7. Correr el proyecto ```pnpm run dev```
 
 ---
 
@@ -16,7 +17,7 @@
 - [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups)
 - [clsx](https://www.npmjs.com/package/clsx)
 - [Swiper React](https://swiperjs.com/react)
-- [Prisma](https://www.prisma.io/docs/getting-started/quickstart)
+- [Prisma](https://www.prisma.io/docs/getting-started/quickstart)j
 
 ## Resources
 
