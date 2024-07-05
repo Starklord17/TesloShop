@@ -13,6 +13,6 @@ En esta sección prepararemos la base de datos y un procedimiento "seed" para ll
 
 ---
 
-Alternativa a Docker para usar Postgres:
+Alternativa a Docker para usar Postgres: https://neon.tech/
 
-https://neon.tech/
+Prisma: https://www.prisma.io/
