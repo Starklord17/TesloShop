@@ -4,12 +4,16 @@ import { initialData } from "./seed";
 async function main() {
   // console.log(initialData);
 
-  await Promise.all([
+  // await Promise.all([
     // 1. Borrar registros previos
-    prisma.productImage.deleteMany(),
-    prisma.product.deleteMany(),
-    prisma.category.deleteMany(),
-  ]);
+    // prisma.productImage.deleteMany(),
+  //   prisma.product.deleteMany(),
+  //   prisma.category.deleteMany(),
+  // ]);
+
+  await prisma.productImage.deleteMany();
+  await prisma.product.deleteMany();
+  await prisma.category.deleteMany();
 
   // console.log("Datos eliminados");
 
@@ -42,7 +46,7 @@ async function main() {
     return map;
   }, {} as Record<string, string>); // <--- Record<string=shirt, string=categoryID>
 
-  console.log(categoriesMap);
+  // console.log(categoriesMap);
 
   // Productos
   // const {images, type, ...product1} = products[0];
@@ -67,6 +71,14 @@ async function main() {
     });
 
     // Images
+    const imagesData = images.map((image) => ({
+      url: image,
+      productId: dbProduct.id
+    }));
+
+    await prisma.productImage.createMany({
+      data: imagesData
+    });
 
   });
 
