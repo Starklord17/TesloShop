@@ -4,12 +4,21 @@ import { ProductGrid, Title } from "@/components";
 
 // const products = initialData.products;
 
-export default async function Home() {
+interface Props {
+  searchParams: {
+    page?: string;
+  }
+}
+
+export default async function Home({searchParams}:Props) {
+
+  // console.log(searchParams);
+  const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
   // const productsTemp = await getPaginatedProductsWithImages();
-  const {products} = await getPaginatedProductsWithImages();
+  const {products} = await getPaginatedProductsWithImages({page});
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <>
