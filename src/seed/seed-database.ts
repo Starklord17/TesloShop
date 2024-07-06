@@ -3,7 +3,6 @@ import { initialData } from "./seed";
 
 async function main() {
   // console.log(initialData);
-  // console.log('Seed ejecutado correctamente');
 
   await Promise.all([
     // 1. Borrar registros previos
@@ -46,6 +45,32 @@ async function main() {
   console.log(categoriesMap);
 
   // Productos
+  // const {images, type, ...product1} = products[0];
+
+  // Como hacer un insert de un producto
+  // await prisma.product.create({
+  //   data: {
+  //     ...product1,
+  //     categoryId: categoriesMap['shirts']
+  //   }
+  // })
+
+  products.forEach( async(product) => {
+    
+    const { type, images, ...rest } = product;
+
+    const dbProduct = await prisma.product.create({
+      data: {
+        ...rest,
+        categoryId: categoriesMap[type]
+      }
+    });
+
+    // Images
+
+  });
+
+  console.log('Seed ejecutado correctamente');
   
 }
 

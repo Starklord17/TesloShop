@@ -3,7 +3,7 @@ interface SeedProduct {
     images: string[];
     inStock: number;
     price: number;
-    sizes: ValidSizes[];
+    sizes: Sizes[];
     slug: string;
     tags: string[];
     title: string;
@@ -11,7 +11,7 @@ interface SeedProduct {
     gender: 'men'|'women'|'kid'|'unisex'
 }
 
-type ValidSizes = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL';
+type Sizes = 'XS'|'S'|'M'|'L'|'XL'|'XXL';
 type ValidTypes = 'shirts'|'pants'|'hoodies'|'hats';
 
 interface SeedData {
