@@ -8,7 +8,7 @@ export interface Product {
   slug: string;
   tags: string[];
   title: string;
-  type: ValidType;
+  // TODO: type: ValidType;
   gender: ValidCategory;
 }
 

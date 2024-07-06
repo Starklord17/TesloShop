@@ -17,11 +17,17 @@ export const getPaginatedProductsWithImages = async() => {
       }
     })
 
-    console.log(products);
+    // console.log(products);
     
+    return {
+      products: products.map(product => ({
+        ...product,
+        images: product.ProductImage.map(image => image.url)
+      }))
+    }
     
   } catch (error) {
-    
+    throw new Error('Error al obtener los productos con imagenes')
   }
 
 }
