@@ -1,28 +1,39 @@
-'use client';
+"use client";
 
+import { generatePaginationNumbers } from "@/utils";
+import clsx from "clsx";
 // https://tailwindcomponents.com/component/pagination-3
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { redirect, usePathname, useSearchParams } from "next/navigation";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 
 interface Props {
   totalPages: number;
 }
 
-export const Pagination = ({totalPages}:Props) => {
-
+export const Pagination = ({ totalPages }: Props) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get('page') ?? 1);
 
-  console.log({pathname, searchParams, currentPage, totalPages})
+  const pageString = searchParams.get("page") ?? 1;
+  const currentPage = isNaN(+pageString) ? 1 : +pageString;
+
+  if (currentPage < 1 || isNaN(+pageString)) {
+    redirect(pathname);
+  }
+
+  // const currentPage = Number(searchParams.get("page") ? searchParams.get("page") : 1 ?? 1);
+
+  const allPages = generatePaginationNumbers(currentPage, totalPages);
+  // console.log({allPages})
+
+  console.log({ pathname, searchParams, currentPage, totalPages });
 
   const createPageUrl = (pageNumber: number | string) => {
-
     const params = new URLSearchParams(searchParams);
 
-    if (pageNumber === '...') {
+    if (pageNumber === "...") {
       return `${pathname}?${params.toString()}`;
     }
 
@@ -30,14 +41,14 @@ export const Pagination = ({totalPages}:Props) => {
       return `${pathname}`; // href="/"
     }
 
-    if (+pageNumber > totalPages) { // Next >
+    if (+pageNumber > totalPages) {
+      // Next >
       return `${pathname}?${params.toString()}`;
     }
 
-    params.set('page', pageNumber.toString());
+    params.set("page", pageNumber.toString());
     return `${pathname}?${params.toString()}`;
-
-  }
+  };
 
   return (
     <div className="flex text-ccenter justify-center mt-10 mb-32">
@@ -53,38 +64,26 @@ export const Pagination = ({totalPages}:Props) => {
             </Link>
           </li>
 
-          <li className="page-item">
-            <a
-              className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-              href="#"
-            >
-              1
-            </a>
-          </li>
-
-          <li className="page-item active">
-            <a
-              className="page-link relative block py-1.5 px-3 border-0 bg-blue-600 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-blue-600 shadow-md focus:shadow-md"
-              href="#"
-            >
-              2 <span className="visually-hidden"></span>
-            </a>
-          </li>
-
-          <li className="page-item">
-            <a
-              className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-              href="#"
-            >
-              3
-            </a>
-          </li>
+          {allPages.map((page, index) => (
+            <li key={page} className="page-item">
+              <Link
+                className={
+                  clsx(
+                    "page-link relative block py-1.5 px-3 border-0 outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none",
+                    currentPage === page ? "bg-blue-600 shadow-sm text-white hover:bg-blue-700 hover:text-white" : ""
+                  )
+                }
+                href={createPageUrl(page)}
+              >
+                {page}
+              </Link>
+            </li>
+          ))}
 
           <li className="page-item">
             <Link
               className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
               href={createPageUrl(currentPage + 1)}
-
             >
               <IoChevronForwardOutline size={30} />
             </Link>
