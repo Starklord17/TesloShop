@@ -1,10 +1,8 @@
-
-
 .swiper-slide {
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: center; /* Asegura el centrado vertical si es necesario */
+  align-items: center;
 }
 
 .swiper-slide img {
@@ -14,19 +12,11 @@
   object-fit: cover;
 }
 
-
 .swiper {
   width: 100%;
   height: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
-
-.swiper-slide {
-  background-size: cover;
-  background-position: center;
-}
-
 
 .mySwiper {
   height: 20%;
@@ -42,13 +32,6 @@
 
 .mySwiper .swiper-slide-thumb-active {
   opacity: 1;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .object-fill {

@@ -27,8 +27,8 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
       <Swiper
         style={
           {
-            "--swiper-navigation-color": "#fff",
-            "--swiper-pagination-color": "#fff",
+            "--swiper-navigation-color": "#bbb",
+            "--swiper-pagination-color": "#bbb",
           } as React.CSSProperties
         }
         spaceBetween={10}
