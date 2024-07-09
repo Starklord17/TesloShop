@@ -19,6 +19,7 @@
 - [Swiper React](https://swiperjs.com/react)
 - [Prisma](https://www.prisma.io/docs/getting-started/quickstart)
 - [Best practice for instantiating Prisma Client with Next.js](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution)
+- [Route Segment Config](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config)
 
 ## Resources
 
