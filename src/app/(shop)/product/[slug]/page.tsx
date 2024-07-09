@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { titleFont } from "@/config/fonts";
 import { SizeSelector } from '@/components/product/size-selector/SizeSelector';
 import { QuantitySelector } from "@/components/product/quantity-selector/QuantitySelector";
-import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
+import { ProductMobileSlideShow, ProductSlideShow, StockLabel } from "@/components";
 import { getProductBySlug } from "@/actions";
 
 
@@ -50,10 +50,13 @@ export default async function ProductPage({ params }: Props) {
 
       {/* Details */}
       <section className="col-span-1 px-5">
+
         <h1 className={`${titleFont.className} antialiased font-bold text-xl`}>
           {product.title}
         </h1>
         <p className="text-lg mb-5">${product.price}</p>
+
+        <StockLabel slug={product.slug} />
 
         {/* Selector de Tallas */}
         <SizeSelector 
