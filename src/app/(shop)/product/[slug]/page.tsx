@@ -1,10 +1,14 @@
+export const revalidate = 604800; // 7 days
+
 import { notFound } from "next/navigation";
 
-import { initialData } from "@/seed/seed";
+// import { initialData } from "@/seed/seed";
 import { titleFont } from "@/config/fonts";
 import { SizeSelector } from '@/components/product/size-selector/SizeSelector';
 import { QuantitySelector } from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow } from "@/components";
+import { getProductBySlug } from "@/actions";
+
 
 
 interface Props {
@@ -13,9 +17,11 @@ interface Props {
   };
 }
 
-export default function ProductPage({ params }: Props) {
+export default async function ProductPage({ params }: Props) {
   const { slug } = params;
-  const product = initialData.products.find((product) => product.slug === slug);
+  // const product = initialData.products.find((product) => product.slug === slug);
+  const product = await getProductBySlug(slug);
+  // console.log(product);
 
   if (!product) {
     notFound();
