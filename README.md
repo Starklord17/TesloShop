@@ -20,9 +20,13 @@
 - [Prisma](https://www.prisma.io/docs/getting-started/quickstart)
 - [Best practice for instantiating Prisma Client with Next.js](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution)
 - [Route Segment Config](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config)
+- [Dynamic Metadata](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
+- 
 
 ## Resources
 
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [Zustand - Gestor de estado](https://zustand-demo.pmnd.rs/)
 - [Swiper](https://swiperjs.com/)
+- [Open Graph Meta Tags](https://www.opengraph.xyz/)
+- [Ngrok](https://ngrok.com/)
