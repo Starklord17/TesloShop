@@ -28,5 +28,5 @@
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [Zustand - Gestor de estado](https://zustand-demo.pmnd.rs/)
 - [Swiper](https://swiperjs.com/)
-- [Open Graph Meta Tags](https://www.opengraph.xyz/)
+- [Open Graph Meta Tags](https://opengraph.dev/)
 - [Ngrok](https://ngrok.com/)
