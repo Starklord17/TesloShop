@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import { QuantitySelector, SizeSelector } from "@/components";
@@ -8,9 +8,21 @@ interface Props {
   product: Product;
 }
 
-export const AddToCart = ({product}: Props) => {
+export const AddToCart = ({ product }: Props) => {
+  const [size, setSize] = useState<ValidSize | undefined>();
+  const [quantity, setQuantity] = useState<number>(1);
 
-  const [size, setSize] = useState<ValidSize|undefined>()
+  const addToCart = () => {
+    if (!size) {
+      alert("Please select a size");
+      return;
+    }
+
+    console.log({
+      size,
+      quantity,
+    });
+  };
 
   return (
     <>
@@ -22,10 +34,12 @@ export const AddToCart = ({product}: Props) => {
       />
 
       {/* Selector de cantidad */}
-      <QuantitySelector quantity={2} />
+      <QuantitySelector quantity={quantity} onQuantityChanged={setQuantity} />
 
       {/* Button */}
-      <button className="btn-primary my-5">Add to Cart</button>
+      <button onClick={addToCart} className="btn-primary my-5">
+        Add to Cart
+      </button>
     </>
   );
 };
