@@ -9,6 +9,7 @@ import { SizeSelector } from '@/components/product/size-selector/SizeSelector';
 import { QuantitySelector } from "@/components/product/quantity-selector/QuantitySelector";
 import { ProductMobileSlideShow, ProductSlideShow, StockLabel } from "@/components";
 import { getProductBySlug } from "@/actions";
+import { AddToCart } from "./ui/AddToCart";
 
 interface Props {
   params: {
@@ -82,19 +83,7 @@ export default async function ProductPage({ params }: Props) {
 
         <StockLabel slug={product.slug} />
 
-        {/* Selector de Tallas */}
-        <SizeSelector 
-          selectedSize={product.sizes[0]}
-          availableSizes={product.sizes}
-        />
-
-        {/* Selector de cantidad */}
-        <QuantitySelector 
-          quantity={2}
-        />
-
-        {/* Button */}
-        <button className="btn-primary my-5">Add to Cart</button>
+      <AddToCart product={product} />
 
         {/* Description */}
         <h3 className="font-bold text-sm">Descripción</h3>

@@ -2,11 +2,13 @@ import type { ValidSize } from "@/interfaces"; // type indica a TS que se puede 
 import clsx from "clsx";
 
 interface Props {
-  selectedSize: ValidSize;
+  selectedSize?: ValidSize;
   availableSizes: ValidSize[];
+
+  onSizeChanged: (size: ValidSize) => void;
 }
  
- export const SizeSelector = ({selectedSize, availableSizes}: Props) => {
+ export const SizeSelector = ({selectedSize, availableSizes, onSizeChanged}: Props) => {
 
   
 
@@ -22,6 +24,7 @@ interface Props {
             // >
             <button
               key={ValidSize}
+              onClick={() => onSizeChanged(ValidSize)}
               className={
                 clsx(
                   "mr-2 mb-2 hover:underline text-sm btn-secondary",
