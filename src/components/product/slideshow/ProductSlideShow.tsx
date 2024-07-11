@@ -51,7 +51,7 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
               height={800}
               src={`/products/${image}`}
               alt={title}
-              // className="rounded-lg object-fill"
+              // className="rounded-lg object-contain"
               // fill
               style={{ objectFit: 'contain' }}
               priority
@@ -76,7 +76,7 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
               height={300}
               src={`/products/${image}`}
               alt={title}
-              className="rounded-lg object-fill"
+              className="rounded-lg object-fill ml-40"
               priority
             />
           </SwiperSlide>
