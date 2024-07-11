@@ -20,10 +20,12 @@ export const AddToCart = ({ product }: Props) => {
     //   return;
     // }
 
-    console.log({
-      size,
-      quantity,
-    });
+    // console.log({
+    //   size,
+    //   quantity,
+    //   product
+    // });
+    // TODO: Add to cart
   };
 
   return (
