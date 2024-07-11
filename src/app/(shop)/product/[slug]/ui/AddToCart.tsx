@@ -11,12 +11,14 @@ interface Props {
 export const AddToCart = ({ product }: Props) => {
   const [size, setSize] = useState<ValidSize | undefined>();
   const [quantity, setQuantity] = useState<number>(1);
+  const [posted, setPosted] = useState(false);
 
   const addToCart = () => {
-    if (!size) {
-      alert("Please select a size");
-      return;
-    }
+    setPosted(true);
+    // if (!size) {
+    //   alert("Please select a size");
+    //   return;
+    // }
 
     console.log({
       size,
@@ -26,6 +28,10 @@ export const AddToCart = ({ product }: Props) => {
 
   return (
     <>
+      {posted && !size && (
+        <span className="flex mt-5 text-red-500 fade-in">Seleccionar una talla:</span>
+      )}
+
       {/* Selector de Tallas */}
       <SizeSelector
         selectedSize={size}
