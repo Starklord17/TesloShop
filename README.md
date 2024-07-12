@@ -30,3 +30,7 @@
 - [Swiper](https://swiperjs.com/)
 - [Open Graph Meta Tags](https://opengraph.dev/)
 - [Ngrok](https://ngrok.com/)
+
+**Next Auth**
+- https://nextjs.org/learn/dashboard-app/adding-authentication
+- [NextAuth.js](https://authjs.dev/reference/nextjs)
