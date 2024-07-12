@@ -3,12 +3,14 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
+import { ProductsInCart } from "./ui/ProductsInCart";
 
-const productsInCart = [
-  initialData.products[0],
-  initialData.products[1],
-  initialData.products[2],
-];
+
+// const productsInCart = [
+//   initialData.products[0],
+//   initialData.products[1],
+//   initialData.products[2],
+// ];
 
 export default function CartPage() {
 
@@ -28,28 +30,8 @@ export default function CartPage() {
             </Link>
 
             {/* Items */}
-            {productsInCart.map((product) => (
-              <div key={product.slug} className="flex mb-5">
-                <Image
-                  src={`/products/${product.images[0]}`}
-                  alt={product.title}
-                  width={100}
-                  height={100}
-                  style={{
-                    objectFit: "cover",
-                  }}
-                  className="mr-5 rounded"
-                />
+            <ProductsInCart />
 
-                <div>
-                  <p>{product.title}</p>
-                  <p>${product.price}</p>
-                  <QuantitySelector quantity={3} />
-
-                  <button className="underline mt-3">Remover</button>
-                </div>
-              </div>
-            ))}
           </article>
 
           {/* Checkout - Resumen de orden*/}
