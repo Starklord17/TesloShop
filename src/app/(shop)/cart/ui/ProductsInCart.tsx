@@ -1,23 +1,25 @@
-'use client';
+"use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { QuantitySelector } from "@/components";
 import { useCartStore } from "@/store";
-import { useEffect, useState } from "react";
-import Link from "next/link";
 
 export const ProductsInCart = () => {
-
-  const updateProductQuantity = useCartStore((state) => state.updateProductQuantity);
-  const [loaded, setLoaded] = useState(false)
+  const updateProductQuantity = useCartStore(
+    (state) => state.updateProductQuantity
+  );
+  const removeProduct = useCartStore((state) => state.removeProduct);
+  const [loaded, setLoaded] = useState(false);
   const productsInCart = useCartStore((state) => state.cart);
 
   useEffect(() => {
-    setLoaded(true)
-  }, [])
+    setLoaded(true);
+  }, []);
 
   if (!loaded) {
-    return <p>Loading...</p>
+    return <p>Loading...</p>;
   }
 
   return (
@@ -36,17 +38,27 @@ export const ProductsInCart = () => {
           />
 
           <div>
-            <Link className="hover:underline cursor-pointer" href={`/product/${product.slug}`}>
+            <Link
+              className="hover:underline cursor-pointer"
+              href={`/product/${product.slug}`}
+            >
               {product.title} / Size: {product.size}
             </Link>
             <p>${product.price}</p>
-            <QuantitySelector 
-              quantity={product.quantity} 
+            <QuantitySelector
+              quantity={product.quantity}
               // onQuantityChanged={(quantity) => console.log(quantity)}
-              onQuantityChanged={(quantity) => updateProductQuantity(product, quantity)}
+              onQuantityChanged={(quantity) =>
+                updateProductQuantity(product, quantity)
+              }
             />
 
-            <button className="underline mt-3">Remover</button>
+            <button
+              className="mt-3 hover:underline hover:text-red-500"
+              onClick={() => removeProduct(product)}
+            >
+              Remover
+            </button>
           </div>
         </div>
       ))}
