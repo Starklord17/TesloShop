@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import { ProductsInCart } from "./ui/ProductsInCart";
+import { OrderSummary } from './ui/OrderSummary';
 
 
 // const productsInCart = [
@@ -39,19 +40,7 @@ export default function CartPage() {
           <aside className="bg-white rounded-xl shadow-xl p-7 h-fit">
             <h2 className="text-xl mb-2">Resumen de orden</h2>
 
-            <div className="grid grid-cols-2 gap-2">
-              <span>Nº Productos</span>
-              <span className="text-right">3 artículos</span>
-
-              <span>Subtotal</span>
-              <span className="text-right">$ 100</span>
-
-              <span>Impuestos (15%)</span>
-              <span className="text-right">$ 15</span>
-
-              <span className="mt-5 text-2xl">Total:</span>
-              <span className="mt-5 text-2xl text-right">$ 115</span>
-            </div>
+            <OrderSummary />
 
             <button className="mt-5 mb-2 w-full">
               <Link
