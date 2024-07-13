@@ -1,17 +1,29 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { authenticate } from "@/actions";
 import { IoInformationOutline } from "react-icons/io5";
 import clsx from "clsx";
 
 export const LoginForm = () => {
 
+  const router = useRouter();
   const [state, dispatch] = useFormState(authenticate, undefined);
 
-  console.log('AuthConfig.ts')
-  console.log(state);
+  useEffect(() => {
+    if (state === "Success") {
+      // redireccionar a la página principal
+      router.replace('/');
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
+
+
+  // console.log('AuthConfig.ts')
+  // console.log(state);
   
 
   return (
@@ -35,7 +47,7 @@ export const LoginForm = () => {
         aria-live="polite"
         aria-atomic="true"
         >
-        {state === "CredentialsSignIn" && (
+        {state === "Invalid credentials." && (
           <div className="flex flex-row mb-2">
             <IoInformationOutline className="h-5 w-5 text-red-500" />
             <p className="text-sm text-red-500">Credenciales incorrectas</p>

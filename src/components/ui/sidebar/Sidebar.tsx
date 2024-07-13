@@ -97,8 +97,9 @@ export const Sidebar = () => {
           </li>
           <li>
             <Link
-              href="/"
+              href="/auth/login"
               className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
+              onClick={ () => closeMenu() }
             >
               <IoLogInOutline size={30} aria-hidden="true" />
               <span className="ml-3 text-xl">Ingresar</span>
