@@ -13,6 +13,7 @@ import {
   IoShirtOutline,
   IoPeopleOutline,
 } from "react-icons/io5";
+import { logout } from "@/actions";
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
@@ -104,13 +105,13 @@ export const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link
-              href="/"
-              className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
+            <button
+              className="flex w-full items-center p-2 hover:bg-gray-100 rounded transition-all"
+              onClick={ () => logout() }
             >
               <IoLogOutOutline size={30} aria-hidden="true" />
               <span className="ml-3 text-xl">Salir</span>
-            </Link>
+            </button>
           </li>
         </ul>
 
