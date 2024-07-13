@@ -77,7 +77,8 @@ export const Sidebar = () => {
         <ul className="mt-10 space-y-6">
           <li>
             <Link
-              href="/"
+              href="/profile"
+              onClick={ () => closeMenu() }
               className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoPersonOutline size={30} aria-hidden="true" />
