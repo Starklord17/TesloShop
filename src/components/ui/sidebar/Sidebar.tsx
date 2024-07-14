@@ -14,10 +14,15 @@ import {
   IoPeopleOutline,
 } from "react-icons/io5";
 import { logout } from "@/actions";
+import { useSession } from "next-auth/react";
 
 export const Sidebar = () => {
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const closeMenu = useUIStore((state) => state.closeSideMenu);
+
+  const { data: session } = useSession();
+
+  // console.log({session});
 
   return (
     <aside>
