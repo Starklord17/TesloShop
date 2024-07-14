@@ -21,6 +21,7 @@ export const Sidebar = () => {
   const closeMenu = useUIStore((state) => state.closeSideMenu);
 
   const { data: session } = useSession();
+  const isAuthenticated = !!session?.user;
 
   // console.log({session});
 
@@ -33,9 +34,9 @@ export const Sidebar = () => {
 
       {/* Blur */}
       {isSideMenuOpen && (
-        <div 
+        <div
           onClick={closeMenu}
-          className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm" 
+          className="fade-in fixed top-0 left-0 w-screen h-screen z-10 backdrop-filter backdrop-blur-sm"
         />
       )}
 
@@ -84,7 +85,7 @@ export const Sidebar = () => {
           <li>
             <Link
               href="/profile"
-              onClick={ () => closeMenu() }
+              onClick={() => closeMenu()}
               className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
             >
               <IoPersonOutline size={30} aria-hidden="true" />
@@ -100,25 +101,33 @@ export const Sidebar = () => {
               <span className="ml-3 text-xl">Ordenes</span>
             </Link>
           </li>
-          <li>
-            <Link
-              href="/auth/login"
-              className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
-              onClick={ () => closeMenu() }
-            >
-              <IoLogInOutline size={30} aria-hidden="true" />
-              <span className="ml-3 text-xl">Ingresar</span>
-            </Link>
-          </li>
-          <li>
-            <button
-              className="flex w-full items-center p-2 hover:bg-gray-100 rounded transition-all"
-              onClick={ () => logout() }
-            >
-              <IoLogOutOutline size={30} aria-hidden="true" />
-              <span className="ml-3 text-xl">Salir</span>
-            </button>
-          </li>
+
+          {/* Logout */}
+          {isAuthenticated && (
+            <li>
+              <button
+                className="flex w-full items-center p-2 hover:bg-gray-100 rounded transition-all"
+                onClick={() => logout()}
+              >
+                <IoLogOutOutline size={30} aria-hidden="true" />
+                <span className="ml-3 text-xl">Salir</span>
+              </button>
+            </li>
+          )}
+
+          {!isAuthenticated && (
+            <li>
+              <Link
+                href="/auth/login"
+                className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
+                onClick={() => closeMenu()}
+              >
+                <IoLogInOutline size={30} aria-hidden="true" />
+                <span className="ml-3 text-xl">Ingresar</span>
+              </Link>
+            </li>
+          )}
+          
         </ul>
 
         {/* Line Separator */}
