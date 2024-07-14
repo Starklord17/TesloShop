@@ -14,9 +14,10 @@ import {
   IoPeopleOutline,
 } from "react-icons/io5";
 import { logout } from "@/actions";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export const Sidebar = () => {
+
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const closeMenu = useUIStore((state) => state.closeSideMenu);
 
@@ -107,7 +108,9 @@ export const Sidebar = () => {
             <li>
               <button
                 className="flex w-full items-center p-2 hover:bg-gray-100 rounded transition-all"
-                onClick={() => logout()}
+                onClick={async () => {
+                  await signOut({ callbackUrl: window.location.href }); // Cierra sesión y recarga
+                }}
               >
                 <IoLogOutOutline size={30} aria-hidden="true" />
                 <span className="ml-3 text-xl">Salir</span>
@@ -127,7 +130,6 @@ export const Sidebar = () => {
               </Link>
             </li>
           )}
-          
         </ul>
 
         {/* Line Separator */}
