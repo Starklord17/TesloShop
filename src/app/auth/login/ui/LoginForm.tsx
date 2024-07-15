@@ -3,20 +3,21 @@
 import { useEffect } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { authenticate } from "@/actions";
 import { IoInformationOutline } from "react-icons/io5";
 import clsx from "clsx";
 
 export const LoginForm = () => {
 
-  const router = useRouter();
+  // const router = useRouter();
   const [state, dispatch] = useFormState(authenticate, undefined);
 
   useEffect(() => {
     if (state === "Success") {
       // redireccionar a la página principal
-      router.replace('/');
+      // router.replace('/');
+      window.location.href = '/'; // redireccionar a la página principal para recargar el navegador y tener la sesión activa
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
