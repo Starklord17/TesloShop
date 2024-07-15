@@ -17,12 +17,12 @@ import { logout } from "@/actions";
 import { signOut, useSession } from "next-auth/react";
 
 export const Sidebar = () => {
-
   const isSideMenuOpen = useUIStore((state) => state.isSideMenuOpen);
   const closeMenu = useUIStore((state) => state.closeSideMenu);
 
   const { data: session } = useSession();
   const isAuthenticated = !!session?.user;
+  const isAdmin = session?.user?.role === "admin";
 
   // console.log({session});
 
@@ -83,25 +83,30 @@ export const Sidebar = () => {
 
         {/* Main Menu */}
         <ul className="mt-10 space-y-6">
-          <li>
-            <Link
-              href="/profile"
-              onClick={() => closeMenu()}
-              className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoPersonOutline size={30} aria-hidden="true" />
-              <span className="ml-3 text-xl">Perfil</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoTicketOutline size={30} aria-hidden="true" />
-              <span className="ml-3 text-xl">Ordenes</span>
-            </Link>
-          </li>
+          {/* User Profile */}
+          {isAuthenticated && (
+            <>
+              <li>
+                <Link
+                  href="/profile"
+                  onClick={() => closeMenu()}
+                  className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
+                >
+                  <IoPersonOutline size={30} aria-hidden="true" />
+                  <span className="ml-3 text-xl">Perfil</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/"
+                  className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
+                >
+                  <IoTicketOutline size={30} aria-hidden="true" />
+                  <span className="ml-3 text-xl">Ordenes</span>
+                </Link>
+              </li>
+            </>
+          )}
 
           {/* Logout */}
           {isAuthenticated && (
@@ -132,39 +137,44 @@ export const Sidebar = () => {
           )}
         </ul>
 
-        {/* Line Separator */}
-        <hr className="w-full h-px bg-gray-200 my-10" aria-hidden="true" />
-
         {/* Admin Menu */}
-        <ul className="space-y-6">
-          <li>
-            <Link
-              href="/"
-              className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoShirtOutline size={30} aria-hidden="true" />
-              <span className="ml-3 text-xl">Productos</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoTicketOutline size={30} aria-hidden="true" />
-              <span className="ml-3 text-xl">Ordenes</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/"
-              className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
-            >
-              <IoPeopleOutline size={30} aria-hidden="true" />
-              <span className="ml-3 text-xl">Usuarios</span>
-            </Link>
-          </li>
-        </ul>
+        {isAdmin && (
+          <>
+            {/* Line Separator */}
+            <hr className="w-full h-px bg-gray-200 my-10" aria-hidden="true" />
+
+            {/* Admin Menu */}
+            <ul className="space-y-6">
+              <li>
+                <Link
+                  href="/"
+                  className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
+                >
+                  <IoShirtOutline size={30} aria-hidden="true" />
+                  <span className="ml-3 text-xl">Productos</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/"
+                  className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
+                >
+                  <IoTicketOutline size={30} aria-hidden="true" />
+                  <span className="ml-3 text-xl">Ordenes</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/"
+                  className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
+                >
+                  <IoPeopleOutline size={30} aria-hidden="true" />
+                  <span className="ml-3 text-xl">Usuarios</span>
+                </Link>
+              </li>
+            </ul>
+          </>
+        )}
       </nav>
     </aside>
   );
