@@ -46,7 +46,7 @@ export const RegisterForm = () => {
           "border-red-500": errors.email,
         })}
         type="email"
-        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+        {...register("email", { required: true, pattern: /^\S+@\S+$/i })} // ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
       />
 
       <label htmlFor="password">Contraseña</label>
