@@ -4,7 +4,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Link from "next/link";
 import clsx from "clsx";
-import { registerUser } from "@/actions";
+import { login, registerUser } from "@/actions";
 
 type FormInputs = {
   name: string;
@@ -13,8 +13,8 @@ type FormInputs = {
 };
 
 export const RegisterForm = () => {
-  const [errorMessage, setErrorMessage] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState("");
   const {
     register,
     handleSubmit,
@@ -33,7 +33,10 @@ export const RegisterForm = () => {
       return;
     }
 
-    console.log({resp});
+    // console.log({resp});
+    await login(email.toLocaleLowerCase(), password);
+
+    window.location.replace('/');
 
   };
 
