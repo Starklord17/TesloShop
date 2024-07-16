@@ -1,7 +1,8 @@
 "use client";
 
+import clsx from "clsx";
 import Link from "next/link";
-import {SubmitHandler, useForm} from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 type FormInputs = {
   name: string;
@@ -10,27 +11,30 @@ type FormInputs = {
 };
 
 export const RegisterForm = () => {
-
-  const { register, handleSubmit, formState: {errors} } = useForm<FormInputs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormInputs>();
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
-    
     const { name, email, password } = data;
-    console.log({name, email, password});
+    console.log({ name, email, password });
 
     // Server action
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-
-      {
-        errors.name && <p className="text-red-500">El nombre es obligatorio</p>
-      }
+      {/* {
+        errors.name && <p className="text-red-500">* El nombre es obligatorio</p>
+      } */}
 
       <label htmlFor="email">Nombre completo</label>
       <input
-        className="px-5 py-2 border bg-gray-200 rounded mb-5"
+        className={clsx("px-5 py-2 border bg-gray-200 rounded mb-5", {
+          "border-red-500": errors.name,
+        })}
         type="text"
         autoFocus
         {...register("name", { required: true })}
@@ -38,16 +42,20 @@ export const RegisterForm = () => {
 
       <label htmlFor="email">Correo electrónico</label>
       <input
-        className="px-5 py-2 border bg-gray-200 rounded mb-5"
+        className={clsx("px-5 py-2 border bg-gray-200 rounded mb-5", {
+          "border-red-500": errors.email,
+        })}
         type="email"
-        {...register("email" , { required: true , pattern: /^\S+@\S+$/i }) }
+        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
       />
 
       <label htmlFor="password">Contraseña</label>
       <input
-        className="px-5 py-2 border bg-gray-200 rounded mb-5"
+        className={clsx("px-5 py-2 border bg-gray-200 rounded mb-5", {
+          "border-red-500": errors.password,
+        })}
         type="password"
-        {...register("password" , { required: true , minLength: 6 }) }
+        {...register("password", { required: true, minLength: 6 })}
       />
 
       <button className="btn-primary">Crear cuenta</button>
