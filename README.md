@@ -30,6 +30,7 @@
 - [Swiper](https://swiperjs.com/)
 - [Open Graph Meta Tags](https://opengraph.dev/)
 - [Ngrok](https://ngrok.com/)
+- [React Hook Form](https://react-hook-form.com/)
 
 **Next Auth**
 - https://nextjs.org/learn/dashboard-app/adding-authentication
