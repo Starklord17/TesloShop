@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import clsx from "clsx";
-import type { Country } from "@/interfaces";
+import type { Address, Country } from "@/interfaces";
 import { useAddressStore } from "@/store";
 import { deleteUserAddress, setUserAddress } from "@/actions";
 
@@ -22,13 +22,15 @@ type FormInputs = {
 
 interface Props {
   countries: Country[];
+  userStoredAddress?: Partial<Address>;
 }
 
-export const AddressForm = ({countries}: Props) => {
+export const AddressForm = ({countries, userStoredAddress = {}}: Props) => {
 
   const { handleSubmit, register, formState: {isValid}, reset } = useForm<FormInputs>({
     defaultValues: {
-      // TODO: Leer de la base de datos.
+      ...(userStoredAddress as any),
+      rememberAddress: false,
     }
   });
 
@@ -103,9 +105,6 @@ export const AddressForm = ({countries}: Props) => {
               <option key={country.id} value={country.id}>{country.name}</option>
             ))
           }
-          {/* <option value="ARG">Argentina</option>
-          <option value="ESP">España</option>
-          <option value="CRI">Costa Rica</option> */}
         </select>
       </fieldset>
 
