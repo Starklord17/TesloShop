@@ -1,12 +1,12 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
 import clsx from "clsx";
 import type { Country } from "@/interfaces";
 import { useAddressStore } from "@/store";
-import { useEffect } from "react";
-import { setUserAddress } from "@/actions";
-import { useSession } from "next-auth/react";
+import { deleteUserAddress, setUserAddress } from "@/actions";
 
 type FormInputs = {
   firstName: string;
@@ -55,10 +55,9 @@ export const AddressForm = ({countries}: Props) => {
     const { rememberAddress, ...restAddress } = data;
 
     if (rememberAddress) {
-      // TODO: Server Action
       setUserAddress(restAddress, session!.user.id);
     } else {
-      // TODO: Server Action
+      deleteUserAddress(session!.user.id);
     }
 
   }
