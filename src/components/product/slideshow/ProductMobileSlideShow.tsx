@@ -40,8 +40,10 @@ export const ProductMobileSlideShow = ({ images, title, className }: Props) => {
               <Image
                 src={`/products/${image}`}
                 alt={title}
-                layout="fill"
-                objectFit="cover" // Asegura que la imagen cubra el área sin perder la relación de aspecto
+                width={100}
+                height={56}
+                // layout="fill"
+                // objectFit="cover"  // Asegura que la imagen cubra el área sin perder la relación de aspecto
                 className="object-fill"
                 priority
               />

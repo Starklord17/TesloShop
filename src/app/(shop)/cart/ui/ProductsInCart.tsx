@@ -33,7 +33,10 @@ export const ProductsInCart = () => {
             height={100}
             style={{
               objectFit: "cover",
+              width: "auto",
+              height: "100%",
             }}
+            priority
             className="mr-5 rounded"
           />
 
