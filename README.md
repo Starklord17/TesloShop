@@ -22,7 +22,7 @@
 - [Best practice for instantiating Prisma Client with Next.js](https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution)
 - [Route Segment Config](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config)
 - [Dynamic Metadata](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
-- 
+- [Prisma Docs - Tx - example](https://www.prisma.io/docs/orm/prisma-client/queries/transactions#interactive-transactions)
 
 ## Resources
 
