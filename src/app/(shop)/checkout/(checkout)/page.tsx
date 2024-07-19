@@ -3,6 +3,7 @@ import Image from "next/image";
 import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import { ProductsInCart } from "./ui/ProductsInCart";
+import { PlaceOrder } from "./ui/PlaceOrder";
 
 // const productsInCart = [
 //   initialData.products[0],
@@ -29,57 +30,8 @@ export default function CheckoutPage() {
             <ProductsInCart />
           </article>
 
-          {/* Checkout - Resumen de orden*/}
-          <aside className="bg-white rounded-xl shadow-xl p-7 flex flex-col justify-between">
-
-            <h2 className="text-2xl mb-2">Dirección de entrega</h2>
-            <div className="mb-10">
-              <p className="text-xl">Bart Simpson</p>
-              <p>Av. Siempre viva 123</p>
-              <p>Springfield, 12345</p>
-              <p>Estados Unidos</p>
-              <p>Código Postal: 90001</p>
-              <p>Tel: 333444555</p>
-            </div>
-
-            {/* Divider */}
-            <div className="w-full h-0.5 rounded bg-gray-200 mb-10">
-              
-            </div>
-
-            <h2 className="text-xl mb-2">Resumen de orden</h2>
-
-            <div className="grid grid-cols-2 gap-2">
-              <span>Nº Productos</span>
-              <span className="text-right">3 artículos</span>
-
-              <span>Subtotal</span>
-              <span className="text-right">$ 100</span>
-
-              <span>Impuestos (15%)</span>
-              <span className="text-right">$ 15</span>
-
-              <span className="mt-5 text-2xl">Total:</span>
-              <span className="mt-5 text-2xl text-right">$ 115</span>
-            </div>
-
-            <button className="mt-5 mb-2 w-full">
-
-            <p className="mb-5">
-                {/* Disclaimer */ }
-                <span className="text-xs">
-                  Al hacer clic en &quot;Colocar orden&quot;, aceptas nuestros <a href="#" className="underline">términos y condiciones</a> y <a href="#" className="underline">política de privacidad</a>
-                </span>
-              </p>
-
-              <Link
-                className="flex btn-primary justify-center"
-                href="/orders/123"
-              >
-                Colocar orden
-              </Link>
-            </button>
-          </aside>
+          {/* Checkout - Resumen de orden */}
+          <PlaceOrder />
 
         </div>
       </section>
