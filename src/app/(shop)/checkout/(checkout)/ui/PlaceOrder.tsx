@@ -11,7 +11,7 @@ export const PlaceOrder = () => {
   const [loaded, setLoaded] = useState(false);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
-  const address = useAddressStore((state) => state.address);
+  const address = useAddressStore((state) => state.shippingAddress);
 
   const { itemsInCart, subTotal, tax, total } = useCartStore((state) =>
     state.getSummaryInformation()

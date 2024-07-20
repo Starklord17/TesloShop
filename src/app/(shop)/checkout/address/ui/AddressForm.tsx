@@ -5,9 +5,10 @@ import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
-import type { Address, Country } from "@/interfaces";
+
 import { useAddressStore } from "@/store";
 import { deleteUserAddress, setUserAddress } from "@/actions";
+import type { Country, UserAddress } from '@/interfaces';
 
 type FormInputs = {
   firstName: string;
@@ -23,45 +24,53 @@ type FormInputs = {
 
 interface Props {
   countries: Country[];
-  userStoredAddress?: Partial<Address>;
+  userDbAddress?: Partial<UserAddress>;
 }
 
-export const AddressForm = ({countries, userStoredAddress = {}}: Props) => {
+export const AddressForm = ({ countries, userDbAddress = {} }: Props) => {
+  const {
+    id, // No se usará
+    userId, // No se usará
+    countryId: country,
+    ...restUserDbAddress
+  } = userDbAddress;
 
   const router = useRouter();
 
   const { handleSubmit, register, formState: {isValid}, reset } = useForm<FormInputs>({
     defaultValues: {
-      ...(userStoredAddress as any),
+      ...restUserDbAddress,
+      country,
       rememberAddress: false,
-    }
+    },
   });
 
+  // Si no está autenticado lo redirecciona al login
   const {data: session} = useSession({
     required: true,
   });
 
   const setAddress = useAddressStore(state => state.setAddress);
-  const address = useAddressStore(state => state.address);
+  const shippingAddress = useAddressStore(state => state.shippingAddress);
 
   // console.log(data?.user.id);
 
   useEffect(() => {
-    if ( address.firstName) {
-      reset(address);
+    if ( shippingAddress.firstName) {
+      reset(shippingAddress);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [reset, shippingAddress]);
 
   const onSubmit = async (data: FormInputs) => {
-    console.log({data});
+    // console.log({data});
 
     const { rememberAddress, ...restAddress } = data;
     setAddress(restAddress);
 
     if (rememberAddress) {
       await setUserAddress(restAddress, session!.user.id);
-    } else {
+    } else { // verify if exists and delete
       await deleteUserAddress(session!.user.id);
     }
 
