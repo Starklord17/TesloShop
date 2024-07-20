@@ -32,6 +32,8 @@
 - [Open Graph Meta Tags](https://opengraph.dev/)
 - [Ngrok](https://ngrok.com/)
 - [React Hook Form](https://react-hook-form.com/)
+- [PayPal](https://developer.paypal.com/dashboard)
+- [PayPal JS SDK](https://www.npmjs.com/package/@paypal/react-paypal-js)
 
 **Next Auth**
 - https://nextjs.org/learn/dashboard-app/adding-authentication

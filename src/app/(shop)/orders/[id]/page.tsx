@@ -1,6 +1,6 @@
 // import Link from "next/link";
 import Image from "next/image";
-import { QuantitySelector, Title } from "@/components";
+import { PayPalButton, QuantitySelector, Title } from "@/components";
 // import { initialData } from "@/seed/seed";
 import clsx from "clsx";
 import { IoCartOutline } from "react-icons/io5";
@@ -144,21 +144,9 @@ export default async function OrderIDpage({ params }: Props) {
             </div>
 
             <button className="mt-5 mb-2 w-full">
-              <div
-                className={clsx(
-                  "flex items-center rounded-lg py-2 px3.5 text-xs font-bold text-white mb-5",
-                  {
-                    "bg-red-500": !order!.isPaid,
-                    "bg-green-700": order!.isPaid,
-                  }
-                )}
-              >
-                <IoCartOutline size={30} className="ml-2" />
-                {/* <span className="mx-2">Pendiente de pago</span> */}
-                <span className="mx-2">
-                  {order?.isPaid ? "Pagada" : "No pagada"}
-                </span>
-              </div>
+
+              <PayPalButton />
+              
             </button>
           </aside>
         </div>
