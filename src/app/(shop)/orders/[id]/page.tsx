@@ -49,14 +49,16 @@ export default async function OrderIDpage({ params }: Props) {
               className={clsx(
                 "flex items-center rounded-lg py-2 px3.5 text-xs font-bold text-white mb-5",
                 {
-                  "bg-red-500": false,
-                  "bg-green-700": true,
+                  "bg-red-500": !order!.isPaid,
+                  "bg-green-700": order!.isPaid,
                 }
               )}
             >
               <IoCartOutline size={30} className="ml-2" />
               {/* <span className="mx-2">Pendiente de pago</span> */}
-              <span className="mx-2">Pagada</span>
+              <span className="mx-2">
+                {order?.isPaid ? "Pagada" : "No pagada"}
+              </span>
             </div>
 
             {/* Items */}
@@ -146,14 +148,16 @@ export default async function OrderIDpage({ params }: Props) {
                 className={clsx(
                   "flex items-center rounded-lg py-2 px3.5 text-xs font-bold text-white mb-5",
                   {
-                    "bg-red-500": false,
-                    "bg-green-700": true,
+                    "bg-red-500": !order!.isPaid,
+                    "bg-green-700": order!.isPaid,
                   }
                 )}
               >
                 <IoCartOutline size={30} className="ml-2" />
                 {/* <span className="mx-2">Pendiente de pago</span> */}
-                <span className="mx-2">Pagada</span>
+                <span className="mx-2">
+                  {order?.isPaid ? "Pagada" : "No pagada"}
+                </span>
               </div>
             </button>
           </aside>
