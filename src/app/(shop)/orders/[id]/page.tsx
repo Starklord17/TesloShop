@@ -1,18 +1,18 @@
 // import Link from "next/link";
 import Image from "next/image";
 import { QuantitySelector, Title } from "@/components";
-import { initialData } from "@/seed/seed";
+// import { initialData } from "@/seed/seed";
 import clsx from "clsx";
 import { IoCartOutline } from "react-icons/io5";
-import { getOrderById } from "@/actions/order/get-order-by-id";
+import { getOrderById } from "@/actions";
 import { redirect } from "next/navigation";
 import { currencyFormat } from "@/utils";
 
-const productsInCart = [
-  initialData.products[0],
-  initialData.products[1],
-  initialData.products[2],
-];
+// const productsInCart = [
+//   initialData.products[0],
+//   initialData.products[1],
+//   initialData.products[2],
+// ];
 
 interface Props {
   params: {

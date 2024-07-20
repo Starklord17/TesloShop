@@ -98,7 +98,8 @@ export const Sidebar = () => {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/orders"
+                  onClick={() => closeMenu()}
                   className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
                 >
                   <IoTicketOutline size={30} aria-hidden="true" />
@@ -156,7 +157,8 @@ export const Sidebar = () => {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/orders"
+                  onClick={() => closeMenu()}
                   className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
                 >
                   <IoTicketOutline size={30} aria-hidden="true" />
