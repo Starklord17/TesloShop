@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import clsx from "clsx";
 
 import { placeOrder } from "@/actions";
@@ -8,8 +9,11 @@ import { useAddressStore, useCartStore } from "@/store";
 import { currencyFormat } from "@/utils";
 
 export const PlaceOrder = () => {
+
+  const router = useRouter();
   const [loaded, setLoaded] = useState(false);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const address = useAddressStore((state) => state.shippingAddress);
 
@@ -18,6 +22,7 @@ export const PlaceOrder = () => {
   );
 
   const cart = useCartStore((state) => state.cart);
+  const clearCart = useCartStore((state) => state.clearCart);
 
   useEffect(() => {
     setLoaded(true);
@@ -32,13 +37,21 @@ export const PlaceOrder = () => {
       quantity: product.quantity,
       size: product.size,
     }));
-    console.log({address, productsToOrder});
+    // console.log({address, productsToOrder});
 
-    // TODO: Server Action
+    // Server Action
     const resp = await placeOrder(productsToOrder, address);
-    console.log({resp});
+    // console.log({resp});
+    if (!resp.ok) {
+      setIsPlacingOrder(false);
+      setErrorMessage(resp.message);
+      return;
+    }
 
-    setIsPlacingOrder(false);
+    // * Todo salió bien!
+    clearCart();
+    router.replace('/orders/' + resp.order?.id);
+
   }
 
   if (!loaded) {
@@ -99,7 +112,7 @@ export const PlaceOrder = () => {
           </span>
         </p>
 
-        {/* <p className="text-red-500">Error de creación</p> */}
+        <p className="text-red-500">{errorMessage}</p>
 
         <button
           // href="/orders/123"
