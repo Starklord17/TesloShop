@@ -1,9 +1,14 @@
 // import Link from "next/link";
 import Image from "next/image";
-import { PayPalButton, QuantitySelector, Title } from "@/components";
+import {
+  OrderStatus,
+  PayPalButton,
+  QuantitySelector,
+  Title,
+} from "@/components";
 // import { initialData } from "@/seed/seed";
-import clsx from "clsx";
-import { IoCartOutline } from "react-icons/io5";
+// import clsx from "clsx";
+// import { IoCartOutline } from "react-icons/io5";
 import { getOrderById } from "@/actions";
 import { redirect } from "next/navigation";
 import { currencyFormat } from "@/utils";
@@ -45,21 +50,7 @@ export default async function OrderIDpage({ params }: Props) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {/* Carrito */}
           <article className="flex flex-col mt-5">
-            <div
-              className={clsx(
-                "flex items-center rounded-lg py-2 px3.5 text-xs font-bold text-white mb-5",
-                {
-                  "bg-red-500": !order!.isPaid,
-                  "bg-green-700": order!.isPaid,
-                }
-              )}
-            >
-              <IoCartOutline size={30} className="ml-2" />
-              {/* <span className="mx-2">Pendiente de pago</span> */}
-              <span className="mx-2">
-                {order?.isPaid ? "Pagada" : "No pagada"}
-              </span>
-            </div>
+            <OrderStatus isPaid={order?.isPaid ?? false} />
 
             {/* Items */}
             {order!.OrderItem.map((item) => (
@@ -144,12 +135,11 @@ export default async function OrderIDpage({ params }: Props) {
             </div>
 
             <button className="mt-5 mb-2 w-full">
-
-              <PayPalButton 
-                orderId={order!.id}
-                amount={order!.total}
-              />
-              
+              {order?.isPaid ? (
+                <OrderStatus isPaid={order?.isPaid ?? false} />
+              ) : (
+                <PayPalButton orderId={order!.id} amount={order!.total} />
+              )}
             </button>
           </aside>
         </div>
