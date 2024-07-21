@@ -37,25 +37,27 @@ export const paypalCheckPayment = async (paypalTransactionId: string) => {
   
   // TODO: Realizar la actualización en nuestra base de datos.
   
-  // try {
-  //   console.log({status, purchase_units});
+  try {
+    console.log({status, purchase_units});
 
-  //   await prisma.order.update({
-  //     where: {id: '6e2a9474-5532-4dea-94e0-8a8f9c1a9444'},
-  //     data: {
-  //       isPaid: true,
-  //       paidAt: new Date(),
-  //     }
-  //   })
+    await prisma.order.update({
+      where: {id: '3840b674-5f16-46ea-afc9-bb1f289e9e73'},
+      data: {
+        isPaid: true,
+        paidAt: new Date(),
+      }
+    })
+
+    // TODO: Revalidar un path
     
-  // } catch (error) {
-  //   console.log(error);
-  //   return {
-  //     ok: false,
-  //     message: "500 - El pago no se pudo realizar",
-  //   };
+  } catch (error) {
+    console.log(error);
+    return {
+      ok: false,
+      message: "500 - El pago no se pudo realizar",
+    };
     
-  // }
+  }
 
 };
 
@@ -85,7 +87,10 @@ const getPayPalBearerToken = async (): Promise<string|null> => {
 
   try {
 
-    const result = await fetch(oauth2Url, requestOptions).then((response) => response.json());
+    const result = await fetch(oauth2Url, {
+      ...requestOptions,
+      cache: 'no-store',
+    }).then((response) => response.json());
     return result.access_token;
     
   } catch (error) {
@@ -107,7 +112,10 @@ const verifyPayPalPayment = async (paypalTransactionId: string, bearerToken: str
   };
 
   try {
-    const resp = await fetch(paypalOrderUrl, requestOptions).then((response) => response.json());
+    const resp = await fetch(paypalOrderUrl, {
+      ...requestOptions,
+      cache: 'no-store',
+    }).then((response) => response.json());
 
     return resp;
 
