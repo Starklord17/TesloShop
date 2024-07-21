@@ -28,7 +28,7 @@ export const Pagination = ({ totalPages }: Props) => {
   const allPages = generatePaginationNumbers(currentPage, totalPages);
   // console.log({allPages})
 
-  console.log({ pathname, searchParams, currentPage, totalPages });
+  // console.log({ pathname, searchParams, currentPage, totalPages });
 
   const createPageUrl = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
