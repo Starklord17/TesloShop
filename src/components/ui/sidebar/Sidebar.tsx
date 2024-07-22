@@ -13,7 +13,7 @@ import {
   IoShirtOutline,
   IoPeopleOutline,
 } from "react-icons/io5";
-import { logout } from "@/actions";
+// import { logout } from "@/actions";
 import { signOut, useSession } from "next-auth/react";
 
 export const Sidebar = () => {
@@ -148,7 +148,8 @@ export const Sidebar = () => {
             <ul className="space-y-6">
               <li>
                 <Link
-                  href="/"
+                  href="/admin/products"
+                  onClick={() => closeMenu()}
                   className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
                 >
                   <IoShirtOutline size={30} aria-hidden="true" />
