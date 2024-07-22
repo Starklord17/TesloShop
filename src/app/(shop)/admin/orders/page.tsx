@@ -4,7 +4,7 @@ export const revalidate = 0; // it tells Next.js not to revalidate the page afte
 import Link from 'next/link';
 import { IoCardOutline } from 'react-icons/io5';
 
-import { Title } from '@/components';
+import { Pagination, Title } from '@/components';
 import { getPaginatedOrders } from '@/actions';
 import { redirect } from 'next/navigation';
 
@@ -76,6 +76,9 @@ export default async function OrderPage() {
 
           </tbody>
         </table>
+
+        <Pagination totalPages={3} />
+
       </main>
     </>
   );

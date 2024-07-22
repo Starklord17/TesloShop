@@ -167,7 +167,8 @@ export const Sidebar = () => {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="/admin/users"
+                  onClick={() => closeMenu()}
                   className="flex items-center p-2 hover:bg-gray-100 rounded transition-all"
                 >
                   <IoPeopleOutline size={30} aria-hidden="true" />
