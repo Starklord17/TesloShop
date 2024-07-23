@@ -16,12 +16,15 @@ interface Props {
 export default async function Home({searchParams}:Props) {
 
   // console.log(searchParams);
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
+  const page = searchParams.page ? parseInt(searchParams.page, 10) : 1;
 
   // const productsTemp = await getPaginatedProductsWithImages();
+  // Server Action para obtener los productos paginados
   const {products, currentPage, totalPages} = await getPaginatedProductsWithImages({page});
 
-  console.log({currentPage, totalPages});
+  // console.log({currentPage, totalPages});
+
+  // const productsWithImages = products.filter((product) => product.ProductImage.length > 0); // Solo productos con imagenes
 
   if (products.length === 0) {
     redirect('/');
@@ -39,6 +42,7 @@ export default async function Home({searchParams}:Props) {
 
       <ProductGrid 
         products={products}
+        // products={productsWithImages}
       />
 
       <Pagination totalPages={totalPages}/>

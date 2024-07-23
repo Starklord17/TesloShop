@@ -3,7 +3,7 @@ export const revalidate = 0; // it tells Next.js not to revalidate the page afte
 
 import Link from 'next/link';
 
-import { Pagination, Title } from '@/components';
+import { Pagination, ProductImage, Title } from '@/components';
 import { getPaginatedProductsWithImages } from '@/actions';
 import Image from 'next/image';
 import { currencyFormat } from '@/utils';
@@ -67,8 +67,8 @@ export default async function OrderPage({searchParams}: Props) {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
 
                   <Link href={`/product/${product.slug}`}>
-                    <Image 
-                      src={`/products/${product.ProductImage[0].url}`}
+                    <ProductImage 
+                      src={product.ProductImage[0]?.url}
                       className='w-20 h-20 object-cover rounded'
                       alt={product.title}
                       width={80}
