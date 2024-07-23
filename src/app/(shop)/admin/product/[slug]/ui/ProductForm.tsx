@@ -1,6 +1,7 @@
 "use client";
 
 import { Category, Product, ProductImage } from "@/interfaces";
+import clsx from "clsx";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 
@@ -30,7 +31,10 @@ export const ProductForm = ({ product, categories }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { isValid }
+    formState: { isValid },
+    getValues,
+    setValue,
+    watch,
   } = useForm<FormInputs>({
     defaultValues: {
       ...product,
@@ -41,9 +45,21 @@ export const ProductForm = ({ product, categories }: Props) => {
     }
   });
 
+  watch('sizes');
+
+  const onSizeChanged = (size: string) => {
+    const sizes = new Set (getValues('sizes'));
+
+    sizes.has(size) ? sizes.delete(size) : sizes.add(size);
+
+    setValue('sizes', Array.from(sizes));
+
+  }
+
   const onSubmit = async (data: FormInputs) => {
     console.log({data});
   }
+
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="grid px-5 mb-16 grid-cols-1 sm:px-0 sm:grid-cols-2 gap-3">
@@ -118,7 +134,18 @@ export const ProductForm = ({ product, categories }: Props) => {
             {
               sizes.map( size => (
                 // bg-blue-500 text-white <--- si está seleccionado
-                <div key={ size } className="flex  items-center justify-center w-10 h-10 mr-2 border rounded-md">
+                <div 
+                 key={ size }
+                 onClick={() => onSizeChanged(size)}
+                 className={
+                  clsx(
+                    "text-center p-2 border rounded-md mr-2 mb-2 w-14 transition-all cursor-pointer",
+                    {
+                      'bg-blue-500 text-white': getValues('sizes').includes(size)
+                    }
+                  )
+                 }
+                >
                   <span>{ size }</span>
                 </div>
               ))
