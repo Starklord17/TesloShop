@@ -32,7 +32,7 @@ export default async function OrderPage({searchParams}: Props) {
       </div>
 
       <main className="mb-10">
-        <table className="sm:w-full min-w-full">
+        <table className="min-w-full">
           <thead className="bg-gray-200 border-b">
 
             <tr>
