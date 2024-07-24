@@ -1,11 +1,11 @@
 "use client";
 
-import { createUpdateProduct } from "@/actions";
-import { Category, Product, ProductImage } from "@/interfaces";
-import clsx from "clsx";
+import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import clsx from "clsx";
+import { createUpdateProduct } from "@/actions";
+import { Category, Product, ProductImage } from "@/interfaces";
 
 interface Props {
   product: Partial<Product> & { ProductImage?: ProductImage[] };
@@ -25,7 +25,7 @@ interface FormInputs {
   gender: "men" | "women" | "kid" | "unisex";
   categoryId: string;
 
-  // TODO: Images
+  images?: FileList;
 }
 
 export const ProductForm = ({ product, categories }: Props) => {
@@ -44,8 +44,7 @@ export const ProductForm = ({ product, categories }: Props) => {
       ...product,
       tags: product.tags?.join(", "), // Convertir el array de tags en una cadena
       sizes: product.sizes ?? [], // Asegurar que sizes sea un array
-
-      // TODO: images
+      images: undefined,
     },
   });
 
@@ -59,11 +58,14 @@ export const ProductForm = ({ product, categories }: Props) => {
     setValue("sizes", Array.from(sizes));
   };
 
+  /**
+   * Handles the form submission for creating or updating a product.
+   * @param data - The form inputs containing the product data.
+   */
   const onSubmit = async (data: FormInputs) => {
-    // console.log({data});
     const formData = new FormData();
 
-    const { ...productToSave } = data;
+    const { images, ...productToSave } = data;
 
     if (product.id) {
       formData.append("id", product.id ?? "");
@@ -78,15 +80,20 @@ export const ProductForm = ({ product, categories }: Props) => {
     formData.append("categoryId", productToSave.categoryId);
     formData.append("gender", productToSave.gender);
 
-    const { ok, product:updatedProduct } = await createUpdateProduct(formData);
-    // console.log({ ok });
+    if (images) {
+      for (let i = 0; i < images.length; i++) {
+        formData.append("images", images[i]);
+      }
+    }
+
+    const { ok, product: updatedProduct } = await createUpdateProduct(formData);
+
     if (!ok) {
       alert("Error al crear/actualizar el producto");
       return;
     }
 
-    router.replace(`/admin/product/${updatedProduct?.slug}`)
-
+    router.replace(`/admin/product/${updatedProduct?.slug}`);
   };
 
   return (
@@ -94,7 +101,7 @@ export const ProductForm = ({ product, categories }: Props) => {
       onSubmit={handleSubmit(onSubmit)}
       className="grid px-5 mb-16 grid-cols-1 sm:px-0 sm:grid-cols-2 gap-3"
     >
-      {/* Textos */}
+
       <div className="w-full">
         <div className="flex flex-col mb-2">
           <span>Título</span>
@@ -173,7 +180,7 @@ export const ProductForm = ({ product, categories }: Props) => {
         <button className="btn-primary w-full">Guardar</button>
       </div>
 
-      {/* Selector de tallas y fotos */}
+
       <div className="w-full">
         <div className="flex flex-col mb-2">
           <span>Inventario</span>
@@ -184,12 +191,11 @@ export const ProductForm = ({ product, categories }: Props) => {
           />
         </div>
 
-        {/* As checkboxes */}
+
         <div className="flex flex-col">
           <span>Tallas</span>
           <div className="flex flex-wrap">
             {sizes.map((size) => (
-              // bg-blue-500 text-white <--- si está seleccionado
               <div
                 key={size}
                 onClick={() => onSizeChanged(size)}
@@ -209,9 +215,10 @@ export const ProductForm = ({ product, categories }: Props) => {
             <span>Fotos</span>
             <input
               type="file"
+              {...register("images")}
               multiple
               className="p-2 border rounded-md bg-gray-200"
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg, image/avif"
             />
           </div>
 
@@ -231,7 +238,6 @@ export const ProductForm = ({ product, categories }: Props) => {
                   }}
                   className="rounded-t shadow-md"
                 />
-                {/* <button className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-md"> */}
                 <button
                   type="button"
                   onClick={() =>
