@@ -12,7 +12,7 @@ interface Props {
 
 export const ProductImage = ({ src, alt, className, width, height, style, priority }: Props) => {
   const localSrc = src
-    ? src.startsWith("http") // htttps://example.com/image.jpg
+    ? src.startsWith("http") // https://example.com/image.jpg
       ? src
       : `/products/${src}` // /products/image.jpg
     : "/imgs/placeholder.jpg";
@@ -28,8 +28,9 @@ export const ProductImage = ({ src, alt, className, width, height, style, priori
         objectFit: "cover",
         width: "auto",
         height: "100%",
+        ...style, // Merge additional styles
       }}
-      priority
+      priority={priority}
     />
   );
 };

@@ -1,10 +1,9 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
-import { createUpdateProduct } from "@/actions";
+import { createUpdateProduct, deleteProductImage } from "@/actions";
 import { Category, Product, ProductImage as ProductWithImage } from "@/interfaces";
 import { ProductImage } from "@/components";
 
@@ -228,6 +227,7 @@ export const ProductForm = ({ product, categories }: Props) => {
               <div key={image.id}>
                 <ProductImage
                   src={image.url}
+                  // src={encodeURIComponent(image.url)} // Codifica la URL si es necesario
                   alt={product.title ?? ""}
                   width={300}
                   height={300}
@@ -239,15 +239,14 @@ export const ProductForm = ({ product, categories }: Props) => {
                   }}
                   className="rounded-t shadow-md"
                 />
-                <button
-                  type="button"
-                  onClick={() =>
-                    console.log("Eliminar imagen", image.id, image.url)
-                  }
-                  className="btn-danger w-full rounded-b-xl"
-                >
-                  Eliminar
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => deleteProductImage(image.id, image.url)}
+                    className="btn-danger w-full rounded-b-xl relative mb-4"
+                    // className="btn-danger w-full rounded-b-xl text-sm sm:text-base"
+                  >
+                    Eliminar
+                  </button>
               </div>
             ))}
           </div>
