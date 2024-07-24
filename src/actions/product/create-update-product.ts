@@ -96,12 +96,12 @@ export const createUpdateProduct = async (formData: FormData) => {
           throw new Error('No se pudo cargar las imágenes, rollingback');
         }
 
-        // await prisma.productImage.createMany({
-        //   data: images.map( image => ({
-        //     url: image!,
-        //     productId: product.id,
-        //   }))
-        // });
+        await prisma.productImage.createMany({
+          data: images.map( image => ({
+            url: image!,
+            productId: product.id,
+          }))
+        });
 
       }
   
@@ -143,11 +143,11 @@ const uploadImages = async( images: File[] ) => {
   
         return cloudinary.uploader.upload(`data:image/png;base64,${ base64Image }`, {
           folder: 'teslo-shop',
-          // transformation: {
-          //   width: 800,
-          //   height: 800,
-          //   crop: 'fill',
-          // }
+          transformation: {
+            width: 800,
+            height: 800,
+            crop: 'scale',
+          }
         })
           .then( r => r.secure_url );
         
