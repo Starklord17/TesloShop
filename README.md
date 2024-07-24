@@ -36,6 +36,7 @@
 - [PayPal](https://developer.paypal.com/dashboard)
 - [PayPal JS SDK](https://www.npmjs.com/package/@paypal/react-paypal-js)
 - [paypal-js](https://www.npmjs.com/package/@paypal/paypal-js)
+- [Cloudinary](https://cloudinary.com/)
 
 **Next Auth**
 - https://nextjs.org/learn/dashboard-app/adding-authentication
