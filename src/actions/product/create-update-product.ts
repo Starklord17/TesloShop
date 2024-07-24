@@ -141,7 +141,14 @@ const uploadImages = async( images: File[] ) => {
         const buffer = await image.arrayBuffer();
         const base64Image = Buffer.from(buffer).toString('base64');
   
-        return cloudinary.uploader.upload(`data:image/png;base64,${ base64Image }`)
+        return cloudinary.uploader.upload(`data:image/png;base64,${ base64Image }`, {
+          folder: 'teslo-shop',
+          // transformation: {
+          //   width: 800,
+          //   height: 800,
+          //   crop: 'fill',
+          // }
+        })
           .then( r => r.secure_url );
         
       } catch (error) {
