@@ -23,7 +23,7 @@
 - [Route Segment Config](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config)
 - [Dynamic Metadata](https://nextjs.org/docs/app/building-your-application/optimizing/metadata)
 - [Prisma Docs - Tx - example](https://www.prisma.io/docs/orm/prisma-client/queries/transactions#interactive-transactions)
-- [Zod: TypeScript-first schema validation](https://zod.dev/)
+- [Zod: TypeScript-first schema validation for product form](https://zod.dev/)
 
 ## Resources
 
