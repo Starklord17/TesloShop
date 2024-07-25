@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 import { useAddressStore } from "@/store";
 import { deleteUserAddress, setUserAddress } from "@/actions";
-import type { Country, UserAddress } from '@/interfaces';
+import type { Country, UserAddress, Address } from '@/interfaces';
 
 type FormInputs = {
   firstName: string;
@@ -24,25 +24,30 @@ type FormInputs = {
 
 interface Props {
   countries: Country[];
-  userDbAddress?: Partial<UserAddress>;
+  // userDbAddress?: Partial<UserAddress>;
+  userStoredAddress?: Partial<Address>;
 }
 
-export const AddressForm = ({ countries, userDbAddress = {} }: Props) => {
-  const {
-    id, // No se usará
-    userId, // No se usará
-    countryId: country,
-    ...restUserDbAddress
-  } = userDbAddress;
+export const AddressForm = ({ countries, userStoredAddress = {} }: Props) => {
+  // const {
+  //   id, // No se usará
+  //   userId, // No se usará
+  //   countryId: country,
+  //   ...restUserDbAddress
+  // } = userDbAddress;
 
   const router = useRouter();
 
   const { handleSubmit, register, formState: {isValid}, reset } = useForm<FormInputs>({
+    // defaultValues: {
+    //   ...restUserDbAddress,
+    //   country,
+    //   rememberAddress: false,
+    // },
     defaultValues: {
-      ...restUserDbAddress,
-      country,
+      ...(userStoredAddress as any),
       rememberAddress: false,
-    },
+    }
   });
 
   // Si no está autenticado lo redirecciona al login
