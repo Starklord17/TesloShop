@@ -19,7 +19,7 @@ export default async function OrderPage() {
 
   return (
     <>
-      <Title title="Orders" />
+      <Title title="Ordenes de compra" />
 
       <main className="mb-10">
         <table className="min-w-full">
