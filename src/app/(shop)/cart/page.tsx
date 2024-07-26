@@ -18,7 +18,7 @@ export default function CartPage() {
   return (
     <main className="flex justify-center items-center mb-72 px-10 sm:px-0">
       <section className="flex flex-col w-[1000px]">
-        <Title title="Cart" subtitle="Your cart is empty" />
+        <Title title="Carrito de compras" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {/* Carrito */}
