@@ -5,7 +5,7 @@
 1. Clonar el repositorio:
 
     ```sh
-    git clone https://github.com/tu-usuario/teslo-shop.git
+    git clone https://github.com/Starklord17/teslo-shop.git
     cd teslo-shop
     ```
 
