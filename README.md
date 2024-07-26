@@ -1,5 +1,7 @@
 # [TesloShop](https://max-teslo-shop.vercel.app/)
 
+TesloShop es un e-commerce completo desarrollado con Next.js, que incluye herramientas modernas y prácticas recomendadas para un desarrollo web eficiente.
+
 ## Configuración del Entorno de Desarrollo
 
 1. Clonar el repositorio:
