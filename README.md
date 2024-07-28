@@ -1,6 +1,6 @@
 # [TesloShop](https://max-teslo-shop.vercel.app/)
 
-TesloShop es un e-commerce completo desarrollado con Next.js, que incluye herramientas modernas y prácticas recomendadas para un desarrollo web eficiente.
+E-commerce desarrollado con **Next.js 14** y con una base de datos escalable en **PostgreSQL**. Incluye autenticación de usuarios y pagos de prueba incorporados con **PayPal**.
 
 ## Configuración del Entorno de Desarrollo
 
